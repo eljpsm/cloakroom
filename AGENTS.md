@@ -1,0 +1,35 @@
+# AGENTS.md
+
+## What this is
+
+A minimal CLI for context-dependent Git identities. It compiles
+`~/.config/cloakroom/config.toml` into native Git conditional includes, so Git
+picks the right `user.name` and `user.email` per repository without cloakroom
+running.
+
+## Commands
+
+Common tasks live in the [Makefile](Makefile).
+
+To run unit tests matching a name, use cargo directly: `cargo test escape`.
+
+## Writing style
+
+Applies to code comments, commit messages, and any prose you add (docs, READMEs,
+this file).
+
+- Aim for brutal simplicity. Say the thing in the fewest words that still carry
+  it. Cut any sentence that does not change what the reader does.
+- No em-dashes. Use a period, a comma, or parentheses.
+- Plain ASCII only. No smart quotes, no arrows, no box-drawing or decorative
+  characters. A hyphen is a hyphen.
+- No ASCII section dividers in comments. Drop rules of dashes or equals signs
+  (`// -----`, `// =====`) and `--- wrapped ---` headers. Start the text
+  directly.
+- Comment on why, not what. The code already says what it does. Skip comments
+  that restate the next line.
+- No filler. Drop "simply", "just", "basically", "of course", "note that", and
+  similar throat-clearing.
+- State facts flat. Skip hype words like "powerful", "seamless", "robust",
+  "blazing fast".
+- One idea per sentence. Short sentences over long ones joined by commas.

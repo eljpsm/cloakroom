@@ -2,5 +2,18 @@
 name = "cloakroom"
 version = "0.1.0"
 edition = "2024"
+# Floor set by the un-deprecation of std::env::home_dir, 1.87.
+rust-version = "1.87"
+license = "GPL-3.0-or-later"
+autolib = false
+publish = false
+description = "Context-dependent Git identities compiled to native Git conditional includes."
+repository = "https://github.com/eljpsm/cloakroom"
 
 [dependencies]
+anyhow = "1.0.104"
+clap = { version = "4.6.5", features = ["derive"] }
+serde = { version = "1.0.229", features = ["derive"] }
+sha2 = "0.11.0"
+tempfile = "3.27.0"
+toml = "1.1.4"
