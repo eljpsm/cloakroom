@@ -4,12 +4,9 @@
 
 use clap::{Parser, Subcommand};
 
+/// Context-dependent Git identities compiled to native Git conditional includes.
 #[derive(Debug, Parser)]
-#[command(
-    name = "cloakroom",
-    version,
-    about = "Context-dependent Git identities compiled to native Git conditional includes."
-)]
+#[command(name = "cloakroom", version)]
 pub struct Cli {
     #[command(subcommand)]
     pub command: Command,

@@ -11,9 +11,18 @@ description = "Context-dependent Git identities compiled to native Git condition
 repository = "https://github.com/eljpsm/cloakroom"
 
 [dependencies]
-anyhow = "1.0.104"
-clap = { version = "4.6.5", features = ["derive"] }
-serde = { version = "1.0.229", features = ["derive"] }
-sha2 = "0.11.0"
-tempfile = "3.27.0"
-toml = "1.1.4"
+anyhow = "1"
+clap = { version = "4", features = ["derive"] }
+serde = { version = "1", features = ["derive"] }
+sha2 = "0.11"
+tempfile = "3"
+toml = "1"
+
+[profile.release]
+strip = true
+lto = true
+
+# Make plain `cargo clippy` and rust-analyzer as strict as CI. Clippy lints
+# do not run under `cargo build`, so toolchain bumps cannot break `nix build`.
+[lints.clippy]
+all = "deny"
