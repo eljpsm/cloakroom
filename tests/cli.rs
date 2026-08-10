@@ -16,27 +16,25 @@ use std::path::{Path, PathBuf};
 use std::process::{Command, Output};
 
 use sha2::{Digest, Sha256};
+use tempfile::TempDir;
 
 /// A scratch home directory, removed on drop.
 struct TempTree {
-    root: PathBuf,
+    root: TempDir,
 }
 
 impl TempTree {
-    /// `name` must be unique per test: tests run in parallel in one process,
-    /// so the pid alone would not keep two trees apart. Any leftover from a
-    /// killed run is cleared first, which is why the name is stable rather
-    /// than random.
     fn new(name: &str) -> Self {
-        let root =
-            std::env::temp_dir().join(format!("cloakroom-cli-{}-{name}", std::process::id()));
-        let _ = std::fs::remove_dir_all(&root);
-        std::fs::create_dir_all(root.join("home")).unwrap();
+        let root = tempfile::Builder::new()
+            .prefix(&format!("cloakroom-cli-{name}-"))
+            .tempdir()
+            .unwrap();
+        std::fs::create_dir_all(root.path().join("home")).unwrap();
         TempTree { root }
     }
 
     fn home(&self) -> PathBuf {
-        self.root.join("home")
+        self.root.path().join("home")
     }
 
     fn config_dir(&self) -> PathBuf {
@@ -67,12 +65,6 @@ impl TempTree {
             .into_iter()
             .find(|path| std::fs::read_to_string(path).unwrap().contains(needle))
             .unwrap()
-    }
-}
-
-impl Drop for TempTree {
-    fn drop(&mut self) {
-        let _ = std::fs::remove_dir_all(&self.root);
     }
 }
 
