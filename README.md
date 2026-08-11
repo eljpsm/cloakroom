@@ -15,6 +15,9 @@ nix run github:eljpsm/cloakroom
 make install
 ```
 
+Prebuilt Linux binaries are on the [releases
+page](https://github.com/eljpsm/cloakroom/releases).
+
 Remote (`remotes`) rules use Git's `hasconfig` condition, which needs Git `2.36`
 or newer. Path rules work on any Git with conditional includes.
 
