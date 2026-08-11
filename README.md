@@ -16,10 +16,9 @@ make install
 ```
 
 Prebuilt Linux binaries are on the [releases
-page](https://github.com/eljpsm/cloakroom/releases).
-
-Remote (`remotes`) rules use Git's `hasconfig` condition, which needs Git `2.36`
-or newer. Path rules work on any Git with conditional includes.
+page](https://github.com/eljpsm/cloakroom/releases). Remote (`remotes`) rules
+use Git's `hasconfig` condition, which needs Git `2.36` or newer. Path rules
+work on any Git with conditional includes.
 
 ## Usage
 
@@ -79,14 +78,6 @@ remotes = [
   mirroring Git's own last-include-wins order.
 - A profile with no rules is allowed; include its generated file yourself or use
   it as documentation.
-
-```bash
-# Remove the global include line added by init, leaving only the conditional includes.
-git config --global --unset include.path '~/.config/cloakroom/generated/root.gitconfig'
-
-# Remove the generated config directory.
-rm -r ~/.config/cloakroom
-```
 
 ## License
 
